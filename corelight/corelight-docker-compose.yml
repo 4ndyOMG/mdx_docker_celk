@@ -1,0 +1,68 @@
+# docker compose -f "./corelight/corelight-docker-compose.yml" --env-file ./.env up -d
+# jupyter notebooks docker run -p 10000:8888 -v "${PWD}":/home/andy/work jupyter/minimal-notebook:latest
+#suricata
+version: "3.9"
+services:
+  setup_corelight:
+    image: corelight/setup
+    build: 
+      dockerfile: ./corelight/corelight_setup.Dockerfile
+    volumes:
+      - ./subset-corelight.yml:/opt/corelight/subset-corelight.yml
+      - ./ecs_template.sh:/opt/corelight/ecs_template.sh
+      - ./elastic-zeek-integration.sh:/opt/elastic-agent/elastic-zeek-integration.sh
+      - ./elastic-zeek-integration-api.json:/opt/elastic/elastic-zeek-integration-api.json
+    user: "0"
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ES_PORT={ES_PORT}
+      - KIBANA_PORT={KIBANA_PORT}
+    network_mode: "host"
+    #entrypoint: /tmp/ecs/ecs_template.sh
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /opt/corelight/subset-corelight.yml ]"]
+      interval: 1s
+      timeout: 5s
+      retries: 120
+
+##corelight installation from here.       
+  corelight-softsensor:
+    build:
+      context: ./corelight
+      args:
+        - softsensor_version=1.6.2
+    # tag the image name to match the softsensor_version variable
+    image: corelight/software-sensor:1.6.2
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+      - SYS_NICE
+    container_name: corelight-softsensor-bundle
+    volumes:
+      - ./corelight-softsensor.conf:/etc/corelight-softsensor.conf
+      - ./local.zeek:/etc/corelight/local.zeek
+#      - ./corelight/zeek:/etc/corelight/zeek
+      - ./corelight-license.txt:/etc/corelight-license.txt
+      - ./suricata-update/disable.conf:/etc/corelight/suricata-update/disable.conf
+      - ./suricata-update/modify.conf:/etc/corelight/suricata-update/modify.conf
+      - ./suricata-update/enable.conf:/etc/corelight/suricata-update/enable.conf
+# filebeat files
+#      - ./opt/filebeat/filebeat-8.6.0-linux-x86_64:/opt/filebeat/filebeat-8.6.0-linux-x86_64
+#      - ./opt/elastic-agent/elastic-agent-8.5.3-linux-x86_64/:/opt/elastic-agent/elastic-agent-8.5.3-linux-x86_64/
+      - ./opt/elastic-agent/elastic-agent.yml:/opt/elastic-agent/elastic-agent.yml
+    hostname: Softsensor-Docker
+    network_mode: "host"
+    restart: unless-stopped
+    privileged: true
+    stdin_open: true
+    tty: true
+
+#command to run after container is booted. 
+#docker container exec -d corelight-softsensor-bundle /bin/bash -c "/elastic-agent-8.5.3-linux-x86_64/elastic-agent install -n"
+#docker container exec -d corelight-softsensor-bundle /bin/bash -c "cp /opt/elastic-agent/elastic-agent.yml /opt/Elastic/Agent/elastic-agent.yml"
+#docker container exec -d corelight-softsensor-bundle /bin/bash -c "elastic-agent restart"
+#filebeat command
+# run filebeat collect 
+#docker container exec -d corelight-softsensor-bundle /bin/bash -c '/opt/filebeat/filebeat-8.6.0-linux-x86_64/filebeat -c /opt/filebeat/filebeat-8.6.0-linux-x86_64/filebeat.yml'

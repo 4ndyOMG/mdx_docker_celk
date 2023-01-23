@@ -1,0 +1,36 @@
+---
+name: corelight_index_mapping
+fields:
+  base:
+    fields:
+      "@timestamp": {}
+  client:
+    fields: "*"
+  destination:
+    fields: "*"
+  dns:
+    fields: "*"
+  email:
+    fields: "*"
+  error:
+    fields: "*"
+  event:
+    fields: "*"
+  file:
+    fields: "*"
+  http:
+    fields: "*"
+  network:
+    fields: "*"
+  source:
+    fields: "*"
+  tls:
+    fields: "*"
+  url:
+    fields: "*"
+  user:
+    fields: "*"
+  user_agent:
+    fields: "*"
+  x509:
+    fields: "*"

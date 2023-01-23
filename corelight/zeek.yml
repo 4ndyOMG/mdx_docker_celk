@@ -1,0 +1,125 @@
+# Module: zeek
+# Docs: https://www.elastic.co/guide/en/beats/filebeat/main/filebeat-module-zeek.html
+
+- module: zeek
+  capture_loss:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/capture_loss:*.log"]
+  connection:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/conn_*.log"]
+  dce_rpc:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/dce_rpc_*.log"]
+  dhcp:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/dhcp_*.log"]
+  dnp3:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/_*.log"]
+  dns:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/dns_*.log"]
+  dpd:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/dpd_*.log"]
+  files:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/files_*.log"]
+  ftp:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/ftp_*.log"]
+  http:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/http_*.log"]
+  intel:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/intel_*.log"]
+  irc:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/irc_*.log"]
+  kerberos:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/kerberos_*.log"]
+  modbus:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/modbus_*.log"]
+  mysql:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/mysql_*.log"]
+  notice:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/notice_*.log"]
+  ntp:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/ntp_*.log"]
+  ntlm:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/ntlm_*.log"]
+  ocsp:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/ocsp_*.log"]
+  pe:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/pe_*.log"]
+  radius:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/radius_*.log"]
+  rdp:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/rdp_*.log"]
+  rfb:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/rfb_*.log"]
+  signature:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/signature_*.log"]
+  sip:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/sip_*.log"]
+  smb_cmd:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/smb_cmd_*.log"]
+  smb_files:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/smb_files_*.log"]
+  smb_mapping:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/smb_mapping_*.log"]
+  smtp:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/smtp_*.log"]
+  snmp:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/snmp_*.log"]
+  socks:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/socks_*.log"]
+  ssh:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/ssh_*.log"]
+  ssl:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/ssl_*.log"]
+  stats:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/stats_*.log"]
+  syslog:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/syslog_*.log"]
+  traceroute:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/traceroute_*.log"]
+  tunnel:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/tunnel_*.log"]
+  weird:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/weird_*.log"]
+  x509:
+    enabled: true
+    var.paths: ["/var/corelight/logs/*/x509_*.log"]
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
