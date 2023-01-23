@@ -56,6 +56,8 @@ if [ $stack == "Corelight_into_ELK" ];
     docker compose up -d && 
 #    docker container exec corelight-softsensor /bin/bash -c '/filebeat-8.6.0-linux-x86_64/filebeat -c /filebeat-8.6.0-linux-x86_64/filebeat.yml modules enable zeek' &&
 #    docker container exec corelight-softsensor /bin/bash -c 'mv /opt/zeek.yml /filebeat-8.6.0-linux-x86_64/modules.d/zeek.yml' &&
+    docker container exec corelight-softsensor /bin/bash -c 'chmod go-w /filebeat-8.6.0-linux-x86_64/filebeat.yml' &&
+    docker container exec corelight-softsensor /bin/bash -c 'chown root:root /filebeat-8.6.0-linux-x86_64/filebeat.yml' &&
     docker container exec -d corelight-softsensor /bin/bash -c '/filebeat-8.6.0-linux-x86_64/filebeat -c /filebeat-8.6.0-linux-x86_64/filebeat.yml'
 
     elif [ $stack == "ELK" ]; then 
