@@ -19,8 +19,7 @@ echo "Cloning mdx_docker_elk repo"
 git clone https://github.com/4ndyOMG/mdx_docker_celk.git &&
 cd mdx_docker_celk
 
-echo "Enter Corelight license key"
-read licenseKey
+read -sp 'Enter Corelight License key: ' licenseKey
 
 echo $licenseKey > ./corelight/corelight-license.txt
 
