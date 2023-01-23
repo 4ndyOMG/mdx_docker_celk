@@ -16,8 +16,13 @@ done
 echo "Setting docker as a service."
 sudo systemctl enable docker
 echo "Cloning mdx_docker_elk repo"
-git clone https://github.com/4ndyOMG/mdx_docker_elk.git &&
-cd mdx_docker_elk
+git clone https://github.com/4ndyOMG/mdx_docker_celk.git &&
+cd mdx_docker_celk
+
+echo "Enter Corelight license key"
+read licenseKey
+
+echo $licenseKey > ./corelight/corelight-license.txt
 
 echo "Which stack would you like to run?"
 select services in "Corelight_into_ELK" "ELK"
