@@ -1,4 +1,10 @@
 #!/bin/bash
+echo "Welcome to celk containerised install."
+echo "To do list contains: User controlled memory limit for containers. Variable mem_limit is set in the .env file. 
+Configure filebeat user for corelight integration with Elasticsearch. 
+Use docker secrets for passwords. 
+Add cert.ca to remove --insecure options in logstash and corelight."
+
 echo "Do you have git and docker installed? "
 soft_list=("git" "docker")
 for name in ${soft_list[@]}; do
@@ -12,6 +18,8 @@ for name in ${soft_list[@]}; do
             echo    "$name installed"
     fi
 done
+
+echo "ELK memory limit is set at 5.5Gb each. Can your machine handle that? If not quit at next question."
 
 echo "Setting docker as a service."
 sudo systemctl enable docker
