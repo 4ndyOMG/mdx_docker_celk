@@ -17,7 +17,7 @@ echo "Setting docker as a service."
 sudo systemctl enable docker
 echo "Cloning mdx_docker_elk repo"
 git clone https://github.com/4ndyOMG/mdx_docker_celk.git &&
-cd mdx_docker_celk
+cd ./mdx_docker_celk
 
 read -sp 'Enter Corelight License key: ' licenseKey
 
