@@ -11,7 +11,7 @@ for name in ${soft_list[@]}; do
     dpkg -s $name &> /dev/null  
     if [ $? -ne 0 ]
         then
-            echo "not installed, installing $name"  
+            echo "not installed $name"  
             sudo apt update
             echo "Please install $name"
         else
