@@ -1,6 +1,6 @@
 # CELK
 
-To do list: 
+To do list: \n
 User controlled memory limit for containers. Variable mem_limit is set in the .env file. 
 Configure filebeat user for corelight integration with Elasticsearch. 
 Use docker secrets for passwords. 
