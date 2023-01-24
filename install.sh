@@ -13,9 +13,9 @@ for name in ${soft_list[@]}; do
         then
             echo "not installed, installing $name"  
             sudo apt update
-            sudo apt install $name
+            echo "Please install $name"
         else
-            echo    "$name installed"
+            echo "$name installed"
     fi
 done
 
